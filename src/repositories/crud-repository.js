@@ -1,3 +1,6 @@
+const { StatusCodes } = require("http-status-codes");
+const AppError = require("../utils/errors/app-error");
+
 class crudRepository {
   constructor(model) {
     this.model = model;
@@ -14,12 +17,15 @@ class crudRepository {
         username:username
       },
     });
+    if(!user){
+      throw new AppError('can not found data',StatusCodes.NOT_FOUND)
+    }
     return user;
   }
 
   async getAll() {
-    const user = await this.model.findAll();
-    return user;
+    const response = await this.model.findAll();
+    return response;
   }
 
   async update(username, data) {
@@ -29,12 +35,15 @@ class crudRepository {
     return user;
   }
 
-  async destroy(id) {
+  async destroy(username) {
     const user = await this.model.destroy({
       where: {
         username: username,
       },
     });
+    if(!user){
+      throw new AppError('can not found data to destroy ',StatusCodes.NOT_FOUND)
+    }
     return user;
   }
 }
