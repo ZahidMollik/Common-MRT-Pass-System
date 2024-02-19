@@ -8,6 +8,9 @@ async function createUser(data){
     const user=await registration.create(data);
     return user;
   } catch (error) {
+    if(error.name=='SequelizeValidationError'){
+      throw new AppError('The username will be alphanumeric with no spaces.',StatusCodes.BAD_REQUEST);
+    }
     if(error.name=='SequelizeUniqueConstraintError'){
       throw new AppError('This username is already used',StatusCodes.BAD_REQUEST);
     }
