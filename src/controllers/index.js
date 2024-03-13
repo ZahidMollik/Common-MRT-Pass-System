@@ -1,3 +1,4 @@
 module.exports={
-  registrationController:require('./registration-controller')
+  registrationController:require('./registration-controller'),
+  loginController:require('./login-controller')
 }

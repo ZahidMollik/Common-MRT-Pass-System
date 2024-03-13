@@ -1,3 +1,4 @@
 module.exports={
-  registrationService:require('./registration-service')
+  registrationService:require('./registration-service'),
+  loginService:require('./login-service')
 }
