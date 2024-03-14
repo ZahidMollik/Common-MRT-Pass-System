@@ -13,7 +13,6 @@ async function loginUser(req,res){
       username:user.username,
       email:user.email
     }
-    console.log(user.email);
     const token=jwt.sign(payload,process.env.SECRETKEY);
     res.cookie('jwt',token,{httpOnly:true,maxAge:10000000})
     return res.status(StatusCodes.OK)
