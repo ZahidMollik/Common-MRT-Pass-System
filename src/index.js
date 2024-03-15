@@ -8,7 +8,8 @@ const app=express();
 app.use(express.json());
 app.use(express.urlencoded({extended:true}));
 app.use(cors({
-  credentials:true
+  credentials:true,
+  origin:['http://localhost:5173','https://common-mrt-pass-system-production.up.railway.app/','http://localhost:8000']
 }));
 app.use(cookieParser());
 app.use('/api',apiRoutes);
