@@ -15,6 +15,7 @@ async function loginUser(req,res){
     }
     const token=jwt.sign(payload,process.env.SECRETKEY);
     res.cookie('jwt',token,{httpOnly:true,maxAge:10000000})
+    successResponse.message='Login Successful';
     return res.status(StatusCodes.OK)
               .json(successResponse);
   } catch (error) {
