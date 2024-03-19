@@ -1,4 +1,5 @@
 module.exports={
   registrationService:require('./registration-service'),
-  loginService:require('./login-service')
+  loginService:require('./login-service'),
+  cardService:require('./card-service')
 }
