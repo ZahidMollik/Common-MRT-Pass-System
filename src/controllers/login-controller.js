@@ -14,7 +14,7 @@ async function loginUser(req,res){
       email:user.email
     }
     const token=jwt.sign(payload,process.env.SECRETKEY);
-    res.cookie('jwt',token,{secure: true,httpOnly:true,maxAge:100000000})
+    res.cookie('jwt',token,{secure: true,httpOnly:true,maxAge:100000000,sameSite:'None'})
     successResponse.message='Login Successful';
     return res.status(StatusCodes.OK)
               .json(successResponse);
