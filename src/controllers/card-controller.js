@@ -39,7 +39,7 @@ async function rechargeCard(req,res){
       total_amount: req.body.amount,
       currency: 'BDT',
       tran_id: tran_Id,
-      success_url: `http://localhost:${ServerConfig.PORT}/api/v1/card/recharge/fail/${tran_Id}`,
+      success_url: `http://localhost:${ServerConfig.PORT}/api/v1/card/recharge/success/${tran_Id}`,
       fail_url:`http://localhost:${ServerConfig.PORT}/api/v1/card/recharge/fail/${tran_Id}`,
       shipping_method: 'server',
       product_name: 'MRTPASS',
@@ -80,8 +80,15 @@ async function rechargeCard(req,res){
 }
 
 async function rechargeSuccess(req,res){
-  const response=await cardService.rechargeSuccess(req.params.tran_Id,{status:'true'});
-  res.redirect(`${process.env.ORIGIN}/card/recharge/success/${req.params.tran_Id}`);
+    try {
+      const response=await cardService.rechargeSuccess(req.params.tran_Id,{status:'true'});
+      res.redirect(`${process.env.ORIGIN}/card/recharge/success/${req.params.tran_Id}`);
+    } catch (error) {
+      errorResponse.error=error;
+      return res.status(error.statusCode)
+              .json(errorResponse);;
+    }
+
 }
 
 async function rechargeFail(req,res){
