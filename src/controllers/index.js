@@ -3,5 +3,6 @@ module.exports={
   loginController:require('./login-controller'),
   logoutController:require('./logout-controller'),
   cardController:require('./card-controller'),
-  userInfoController:require('./userInfo-controller')
+  userInfoController:require('./userInfo-controller'),
+  stationController:require('./station-controller')
 }
