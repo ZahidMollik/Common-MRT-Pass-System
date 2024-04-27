@@ -14,6 +14,10 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   metro.init({
+    name: {
+      type:DataTypes.STRING,
+      allowNull:false
+    },
     originStation: {
       type:DataTypes.STRING,
       allowNull:false
