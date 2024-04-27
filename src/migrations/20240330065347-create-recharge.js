@@ -15,7 +15,8 @@ module.exports = {
         references:{
           model:"cards",
           key:"cardnumber"
-        }
+        },
+        onDelete:'cascade'
       },
       transactionId: {
         type: Sequelize.STRING,
