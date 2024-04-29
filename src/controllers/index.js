@@ -7,5 +7,6 @@ module.exports={
   cardController:require('./card-controller'),
   userInfoController:require('./userInfo-controller'),
   stationController:require('./station-controller'),
-  calculateFareController:require('./calculateFare-controller')
+  calculateFareController:require('./calculateFare-controller'),
+  payFareController:require('./payFare-controller')
 }

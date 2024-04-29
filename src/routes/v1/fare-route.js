@@ -1,6 +1,11 @@
 const express=require('express');
-const {calculateFareController}=require('../../controllers');
+const {calculateFareController,payFareController}=require('../../controllers');
+const { authMiddleware } = require('../../middlewares');
 const router=express.Router();
 
-router.post('/metro',calculateFareController.getMetroFare);
+router.post('/calculate',calculateFareController.getMetroFare);
+router.post('/pay',authMiddleware,payFareController.payFare);
+router.get('/payhistory',authMiddleware,payFareController.payFareHistory);
+router.delete('/payhistory/delete',authMiddleware,payFareController.deletepayFareHistory);
+
 module.exports=router;

@@ -8,12 +8,6 @@ async function getStation(data){
     const response=await station.get(data);
     return response;
   } catch (error) {
-    // if(error.name=='SequelizeValidationError'){
-    //   throw new AppError('The username will be alphanumeric with no spaces.',StatusCodes.BAD_REQUEST);
-    // }
-    // if(error.name=='SequelizeUniqueConstraintError'){
-    //   throw new AppError('This username is already used',StatusCodes.BAD_REQUEST);
-    // }
     throw new AppError('something went wrong while geting stations',StatusCodes.INTERNAL_SERVER_ERROR);
   }
 }

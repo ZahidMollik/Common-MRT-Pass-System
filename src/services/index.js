@@ -4,5 +4,6 @@ module.exports={
   cardService:require('./card-service'),
   userInfoService:require('./userInfo-service'),
   stationService:require('./station-service'),
-  calculateFareService:require('./calculatefare-service')
+  calculateFareService:require('./calculatefare-service'),
+  payFareService:require('./payFare-service')
 }
