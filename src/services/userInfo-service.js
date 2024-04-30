@@ -6,9 +6,19 @@ const register = new registrationRepo();
 
 async function profileSetup(data) {
   try {
+    const User = await userInfo.get(data.username);
+    if(User){
+      throw new AppError(
+        "you already set up the profile please update",
+        StatusCodes.BAD_REQUEST
+      );
+    }
     const user = await userInfo.create(data);
     return user;
   } catch (error) {
+    if(error.statusCode==StatusCodes.BAD_REQUEST){
+      throw new AppError(error.message,error.statusCode);
+    }
     throw new AppError(
       "something went wrong while setting up the user profile",
       StatusCodes.INTERNAL_SERVER_ERROR
