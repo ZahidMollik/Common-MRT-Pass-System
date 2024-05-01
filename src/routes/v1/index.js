@@ -6,6 +6,7 @@ const cardRoute=require('./card-route');
 const userInfoRoute=require('./userInfo-routes');
 const stationRoute=require('./station-route');
 const fareRoute=require('./fare-route')
+const busRoute=require('./bus-route')
 const router=express.Router();
 
 router.use('/registration',registerRoute);
@@ -15,4 +16,6 @@ router.use('/card',cardRoute);
 router.use('/users',userInfoRoute);
 router.use('/stations',stationRoute);
 router.use('/fare',fareRoute)
+router.use('/buses',busRoute)
+
 module.exports=router;

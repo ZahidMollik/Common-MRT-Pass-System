@@ -5,5 +5,6 @@ module.exports={
   rechargeRepo:require('./recharge-repository'),
   stationRepo:require('./station-repository'),
   metroRepo:require('./metro-repository'),
-  journeyRepo:require('./journey-repository')
+  journeyRepo:require('./journey-repository'),
+  busRepo:require('./bus-repository')
 }

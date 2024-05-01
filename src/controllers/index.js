@@ -8,5 +8,6 @@ module.exports={
   userInfoController:require('./userInfo-controller'),
   stationController:require('./station-controller'),
   calculateFareController:require('./calculateFare-controller'),
-  payFareController:require('./payFare-controller')
+  payFareController:require('./payFare-controller'),
+  busController:require('./bus-controller')
 }
