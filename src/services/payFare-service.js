@@ -5,13 +5,14 @@ const journey=new journeyRepo();
 const card=new cardRepo();
 async function payFare(data){
   try {
-    const response=await journey.create(data);
+    
     const  cardInfo=await card.get(data.username);
     if(cardInfo.balance<data.fare){
       throw new AppError('insufficient Balance',StatusCodes.BAD_REQUEST);
     }
     const newBalance=cardInfo.balance-data.fare;
     const updateBalance = await card.balanceUpdate(newBalance,cardInfo.cardnumber);
+    const response=await journey.create(data);
     return updateBalance;
   } catch (error) {
     console.log(error);

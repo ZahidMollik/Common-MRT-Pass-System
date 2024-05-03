@@ -6,5 +6,6 @@ module.exports={
   stationService:require('./station-service'),
   calculateFareService:require('./calculatefare-service'),
   payFareService:require('./payFare-service'),
-  busService:require('./bus-service')
+  busService:require('./bus-service'),
+  AirplaneService:require('./airplane-service')
 }

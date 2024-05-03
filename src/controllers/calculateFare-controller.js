@@ -39,7 +39,28 @@ async function getBusFare(req,res){
   }
 }
 
+async function getAirplaneFare(req,res){
+  try {
+    const numOfPassenger=req.body.numOfPassenger
+    const Fare=await calculateFareService.getAirplaneFare(numOfPassenger,{
+      name:req.body.name,
+      departureAirport:req.body.departureAirport,
+      arrivalAirport:req.body.arrivalAirport,
+      departureTime:req.body.departureTime
+    })
+    successResponse.data=Fare;
+    successResponse.message='Successfully complete';
+    return res.status(StatusCodes.OK)
+              .json(successResponse);
+  } catch (error) {
+    errorResponse.error=error;
+    return res.status(error.statusCode)
+              .json(errorResponse);
+  }
+}
+
 module.exports={
   getMetroFare,
-  getBusFare
+  getBusFare,
+  getAirplaneFare
 }

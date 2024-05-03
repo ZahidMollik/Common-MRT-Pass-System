@@ -1,8 +1,9 @@
 const { StatusCodes } = require('http-status-codes');
-const {metroRepo,busRepo}=require('../repositories');
+const {metroRepo,busRepo,airplaneRepo}=require('../repositories');
 const AppError = require('../utils/errors/app-error');
 const metro=new metroRepo();
 const bus=new busRepo();
+const airplane=new airplaneRepo();
 
 async function getMetroFare(data){
   try {
@@ -24,7 +25,18 @@ async function getBusFare(numOfPassenger,data){
   }
 }
 
+async function getAirplaneFare(numOfPassenger,data){
+  try {
+    const response=await airplane.getAirplane(data);
+    const totalFare=(response.price*numOfPassenger)
+    return totalFare;
+  } catch (error) {
+    console.log(error);
+    throw new AppError('something went wrong while calculating airplane  fare',StatusCodes.INTERNAL_SERVER_ERROR);
+  }
+}
 module.exports={
   getMetroFare,
-  getBusFare
+  getBusFare,
+  getAirplaneFare
 }
