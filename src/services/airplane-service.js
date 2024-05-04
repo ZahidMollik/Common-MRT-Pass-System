@@ -36,7 +36,9 @@ async function getAirplanesInfo(data){
 async function getDepartureTimeInfo(data){
   try {
     const response=await airplane.get(data);
-    return response;
+    const departingInfo=[...response.map(airplane=>airplane.departureTime)
+    ]
+    return departingInfo;
   } catch (error) {
     console.log(error);
     throw new AppError('something went wrong',StatusCodes.INTERNAL_SERVER_ERROR);

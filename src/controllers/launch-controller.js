@@ -24,7 +24,7 @@ async function addLaunchInfo(req,res){
 
 async function getCabinInfo(req,res){
   try {
-    const response=await launchService.getLaunchesInfo({
+    const response=await launchService.getCabinInfo({
       originTerminal:req.body.originTerminal,
       destinationTerminal:req.body.destinationTerminal,
     })

@@ -26,7 +26,10 @@ async function addLaunchInfo(data){
 async function getCabinInfo(data){
   try {
     const response=await launch.get(data);
-    return response;
+    const cabinInfo=[...new Set(response.map(launch=>launch.cabinType)
+    )]
+    
+    return cabinInfo;
   } catch (error) {
     console.log(error);
     throw new AppError('something went wrong while getting launches info',StatusCodes.INTERNAL_SERVER_ERROR);
