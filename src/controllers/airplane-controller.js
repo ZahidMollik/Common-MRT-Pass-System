@@ -40,6 +40,25 @@ async function getAirplanesInfo(req,res){
   }
 }
 
+async function getDepartureTimeInfo(req,res){
+  try {
+    const response=await AirplaneService.getDepartureTimeInfo({
+      name:req.body.name,
+      departureAirport:req.body.departureAirport,
+      arrivalAirport:req.body.arrivalAirport,
+      
+    })
+    successResponse.data=response;
+    successResponse.message='Successfully complete';
+    return res.status(StatusCodes.OK)
+              .json(successResponse);
+  } catch (error) {
+    errorResponse.error=error;
+    return res.status(error.statusCode)
+              .json(errorResponse);
+  }
+}
+
 
 async function getAllAirplaneInfo(req,res){
   try {
@@ -93,6 +112,7 @@ async function deleteAirplaneInfo(req,res){
 module.exports={
   addAirplaneInfo,
   getAirplanesInfo,
+  getDepartureTimeInfo,
   getAllAirplaneInfo,
   updateAirplaneInfo,
   deleteAirplaneInfo

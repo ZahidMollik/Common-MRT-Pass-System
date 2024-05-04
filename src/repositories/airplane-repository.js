@@ -13,11 +13,9 @@ class airplaneRepo{
     return response;
   }
 
-  async get(origin,destination) {
+  async get(data) {
     const response = await airplane.findAll( {
-      where: {
-        [Op.and]:[{departureAirport:origin},{arrivalAirport:destination}]
-       },
+      where: data
     });
     return response;
   }

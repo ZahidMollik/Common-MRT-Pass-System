@@ -25,11 +25,21 @@ async function addAirplaneInfo(data){
 
 async function getAirplanesInfo(data){
   try {
-    const response=await airplane.get(data.departureAirport,data.arrivalAirport);
+    const response=await airplane.get(data);
     return response;
   } catch (error) {
     console.log(error);
-    throw new AppError('something went wrong while getting airplane info',StatusCodes.INTERNAL_SERVER_ERROR);
+    throw new AppError('something went wrong while getting airplanes info',StatusCodes.INTERNAL_SERVER_ERROR);
+  }
+}
+
+async function getDepartureTimeInfo(data){
+  try {
+    const response=await airplane.get(data);
+    return response;
+  } catch (error) {
+    console.log(error);
+    throw new AppError('something went wrong',StatusCodes.INTERNAL_SERVER_ERROR);
   }
 }
 
@@ -66,6 +76,7 @@ async function deleteAirplaneInfo(id){
 module.exports={
   addAirplaneInfo,
   getAirplanesInfo,
+  getDepartureTimeInfo,
   getAllAirplaneInfo,
   updateAirplaneInfo,
   deleteAirplaneInfo
