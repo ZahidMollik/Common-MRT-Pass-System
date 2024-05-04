@@ -10,5 +10,6 @@ module.exports={
   calculateFareController:require('./calculateFare-controller'),
   payFareController:require('./payFare-controller'),
   busController:require('./bus-controller'),
-  airplaneController:require('./airplane-controller')
+  airplaneController:require('./airplane-controller'),
+  launchController:require('./launch-controller'),
 }

@@ -7,5 +7,6 @@ module.exports={
   calculateFareService:require('./calculatefare-service'),
   payFareService:require('./payFare-service'),
   busService:require('./bus-service'),
-  AirplaneService:require('./airplane-service')
+  AirplaneService:require('./airplane-service'),
+  launchService:require('./launch-service')
 }
