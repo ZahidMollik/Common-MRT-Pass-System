@@ -5,7 +5,7 @@ const journey=new journeyRepo();
 const card=new cardRepo();
 async function payFare(data){
   try {
-    
+
     const  cardInfo=await card.get(data.username);
     if(cardInfo.balance<data.fare){
       throw new AppError('insufficient Balance',StatusCodes.BAD_REQUEST);
@@ -15,7 +15,9 @@ async function payFare(data){
     const response=await journey.create(data);
     return updateBalance;
   } catch (error) {
-    console.log(error);
+    if (error.statusCode == StatusCodes.NOT_FOUND) {
+      throw new AppError("Please generate a card first", error.statusCode);
+    }
     if (error.statusCode == StatusCodes.BAD_REQUEST) {
       throw new AppError(error.message, error.statusCode);
     }
@@ -25,7 +27,7 @@ async function payFare(data){
 
 async function payFareHistroy(data){
   try {
-    const response=await journey.getAll(data);
+    const response=await journey.getHistory(data);
     return response
   } catch (error) {
     throw new AppError('something went wrong while geting journey history',StatusCodes.INTERNAL_SERVER_ERROR);
