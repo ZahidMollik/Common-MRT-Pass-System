@@ -58,9 +58,29 @@ async function getAirplaneFare(req,res){
               .json(errorResponse);
   }
 }
+async function getLaunchFare(req,res){
+  try {
+    const numOfPassenger=req.body.numOfPassenger
+    const Fare=await calculateFareService.getLaunchFare(numOfPassenger,{
+      name:req.body.name,
+      originTerminal:req.body.originTerminal,
+      destinationTerminal:req.body.destinationTerminal,
+      cabinType:req.body.cabinType
+    })
+    successResponse.data=Fare;
+    successResponse.message='Successfully complete';
+    return res.status(StatusCodes.OK)
+              .json(successResponse);
+  } catch (error) {
+    errorResponse.error=error;
+    return res.status(error.statusCode)
+              .json(errorResponse);
+  }
+}
 
 module.exports={
   getMetroFare,
   getBusFare,
-  getAirplaneFare
+  getAirplaneFare,
+  getLaunchFare
 }
