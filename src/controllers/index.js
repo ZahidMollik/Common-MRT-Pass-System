@@ -12,4 +12,5 @@ module.exports={
   busController:require('./bus-controller'),
   airplaneController:require('./airplane-controller'),
   launchController:require('./launch-controller'),
+  metroController:require('./metro-controller')
 }

@@ -1,18 +1,18 @@
 const { StatusCodes } = require('http-status-codes');
-const {busRepo}=require('../repositories');
+const {metroRepo}=require('../repositories');
 const AppError = require('../utils/errors/app-error');
-const bus=new busRepo();
+const metro=new metroRepo();
 
-async function addBusInfo(data){
+async function addMetroInfo(data){
   try {
     if(data.originStation===data.destinationStation){
       throw new AppError('origin and destination station must be different',StatusCodes.BAD_REQUEST);
     }
-   const res=await bus.getBus(data);
+   const res=await metro.getMetro(data);
    if(res){
     throw new AppError('you already added this info',StatusCodes.BAD_REQUEST);
    }
-    const response=await bus.create(data);
+    const response=await metro.create(data);
     return response;
   } catch (error) {
     console.log(error);
@@ -23,30 +23,30 @@ async function addBusInfo(data){
   }
 }
 
-async function getBusesInfo(data){
+async function getMetrosInfo(data){
   try {
-    const response=await bus.get(data.originStation,data.destinationStation);
+    const response=await metro.get(data.originStation,data.destinationStation);
     return response;
   } catch (error) {
     console.log(error);
-    throw new AppError('something went wrong while getting bus info',StatusCodes.INTERNAL_SERVER_ERROR);
+    throw new AppError('something went wrong while getting metro info',StatusCodes.INTERNAL_SERVER_ERROR);
   }
 }
 
 
-async function getAllBusInfo(data){
+async function getAllMetroInfo(data){
   try {
-    const response=await bus.getAll();
+    const response=await metro.getAll();
     return response;
   } catch (error) {
     console.log(error);
-    throw new AppError('something went wrong while getting all bus infos',StatusCodes.INTERNAL_SERVER_ERROR);
+    throw new AppError('something went wrong while getting all metro infos',StatusCodes.INTERNAL_SERVER_ERROR);
   }
 }
 
-async function updateBusInfo(id,data){
+async function updateMetroInfo(id,data){
   try {
-    const response=await bus.update(id,data);
+    const response=await metro.update(id,data);
     return response;
   } catch (error) {
     console.log(error);
@@ -54,9 +54,9 @@ async function updateBusInfo(id,data){
   }
 }
 
-async function deleteBusInfo(id){
+async function deleteMetroInfo(id){
   try {
-    const response=await bus.delete(id);
+    const response=await metro.delete(id);
     return response;
   } catch (error) {
     throw new AppError('something went wrong',StatusCodes.INTERNAL_SERVER_ERROR);
@@ -64,9 +64,9 @@ async function deleteBusInfo(id){
 }
 
 module.exports={
-  addBusInfo,
-  getBusesInfo,
-  getAllBusInfo,
-  updateBusInfo,
-  deleteBusInfo
+  addMetroInfo,
+  getMetrosInfo,
+  getAllMetroInfo,
+  updateMetroInfo,
+  deleteMetroInfo
 }

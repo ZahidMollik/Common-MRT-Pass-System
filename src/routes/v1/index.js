@@ -9,6 +9,7 @@ const fareRoute=require('./fare-route')
 const busRoute=require('./bus-route')
 const airplaneRoute=require('./airplane-route')
 const launchRoute=require('./launch-route')
+const metroRoute=require('./metro-route')
 const router=express.Router();
 
 router.use('/registration',registerRoute);
@@ -21,5 +22,6 @@ router.use('/fare',fareRoute)
 router.use('/buses',busRoute)
 router.use('/services/airplanes',airplaneRoute)
 router.use('/services/launches',launchRoute)
+router.use('/services/metros',metroRoute)
 
 module.exports=router;

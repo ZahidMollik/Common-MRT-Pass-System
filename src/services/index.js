@@ -8,5 +8,6 @@ module.exports={
   payFareService:require('./payFare-service'),
   busService:require('./bus-service'),
   AirplaneService:require('./airplane-service'),
-  launchService:require('./launch-service')
+  launchService:require('./launch-service'),
+  metroService:require('./metro-service')
 }
