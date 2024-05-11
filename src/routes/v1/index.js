@@ -10,11 +10,13 @@ const busRoute=require('./bus-route')
 const airplaneRoute=require('./airplane-route')
 const launchRoute=require('./launch-route')
 const metroRoute=require('./metro-route')
+const forgetRoute=require('./forgetpass-route')
 const router=express.Router();
 
 router.use('/registration',registerRoute);
 router.use('/login',loginRoute);
 router.use('/logout',logoutRoute);
+router.use('/password',forgetRoute);
 router.use('/card',cardRoute);
 router.use('/users',userInfoRoute);
 router.use('/stations',stationRoute);
