@@ -29,7 +29,7 @@ async function forgetPassword(data) {
       from: process.env.USERGMAIL,
       to: data.email,
       subject: 'Reset Password Link',
-      text: `http://localhost:${PORT}/api/v1/password/reset_password/${User.username}/${token}`
+      text: `${process.env.ORIGIN}/reset_password/${User.username}/${token}`
     };
         
     const response=transporter.sendMail(mailOptions);
