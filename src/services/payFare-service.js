@@ -1,4 +1,5 @@
 const { StatusCodes } = require('http-status-codes');
+const QRcode=require('qrcode');
 const {journeyRepo,cardRepo}=require('../repositories');
 const AppError = require('../utils/errors/app-error');
 const journey=new journeyRepo();
@@ -13,8 +14,17 @@ async function payFare(data){
     const newBalance=cardInfo.balance-data.fare;
     const updateBalance = await card.balanceUpdate(newBalance,cardInfo.cardnumber);
     const response=await journey.create(data);
-    return updateBalance;
+    const qrInfo={
+      transportName:data.transportName,
+      username:data.username,
+      originStation:data.originStation,
+      destinationStation:data.destinationStation,
+      fare:data.fare
+    }
+    const qrcodeUrl=await QRcode.toDataURL(JSON.stringify(qrInfo));
+    return qrcodeUrl;
   } catch (error) {
+    console.log(error);
     if (error.statusCode == StatusCodes.NOT_FOUND) {
       throw new AppError("Please generate a card first", error.statusCode);
     }
