@@ -46,6 +46,14 @@ module.exports = {
         type: Sequelize.INTEGER,
         allowNull:false
       },
+      code:{
+        type: Sequelize.STRING,
+        allowNull:false
+      },
+      ScanCount:{
+        type: Sequelize.INTEGER,
+        defaultValue:0
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

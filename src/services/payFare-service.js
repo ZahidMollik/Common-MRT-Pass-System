@@ -1,5 +1,6 @@
 const { StatusCodes } = require('http-status-codes');
 const QRcode=require('qrcode');
+const {v4: uuidv4}=require('uuid')
 const {journeyRepo,cardRepo}=require('../repositories');
 const AppError = require('../utils/errors/app-error');
 const journey=new journeyRepo();
@@ -13,15 +14,12 @@ async function payFare(data){
     }
     const newBalance=cardInfo.balance-data.fare;
     const updateBalance = await card.balanceUpdate(newBalance,cardInfo.cardnumber);
+    const verifyToken=uuidv4().substring(0, 12);
+    data.code=verifyToken;
     const response=await journey.create(data);
-    const qrInfo={
-      transportName:data.transportName,
-      username:data.username,
-      originStation:data.originStation,
-      destinationStation:data.destinationStation,
-      fare:data.fare
-    }
-    const qrcodeUrl=await QRcode.toDataURL(JSON.stringify(qrInfo));
+    const qrInfo='192.168.0.199:8000/api/v1'+'/QRCode'+`/${verifyToken}`
+    
+    const qrcodeUrl=await QRcode.toDataURL(qrInfo);
     return qrcodeUrl;
   } catch (error) {
     console.log(error);

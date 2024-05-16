@@ -11,6 +11,7 @@ const airplaneRoute=require('./airplane-route')
 const launchRoute=require('./launch-route')
 const metroRoute=require('./metro-route')
 const forgetRoute=require('./forgetpass-route')
+const QRRoute=require('./qr-route')
 const router=express.Router();
 
 router.use('/registration',registerRoute);
@@ -25,5 +26,6 @@ router.use('/buses',busRoute)
 router.use('/services/airplanes',airplaneRoute)
 router.use('/services/launches',launchRoute)
 router.use('/services/metros',metroRoute)
+router.use('/QRCode',QRRoute)
 
 module.exports=router;

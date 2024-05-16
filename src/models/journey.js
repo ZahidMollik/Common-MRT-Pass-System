@@ -45,6 +45,14 @@ module.exports = (sequelize, DataTypes) => {
       type:DataTypes.INTEGER,
       allowNull:false
     },
+    code:{
+      type: DataTypes.STRING,
+      allowNull:false
+    },
+    ScanCount:{
+      type: DataTypes.INTEGER,
+      defaultValue:0
+    },
   }, {
     sequelize,
     modelName: 'journey',

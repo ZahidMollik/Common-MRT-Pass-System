@@ -10,5 +10,6 @@ module.exports={
   busService:require('./bus-service'),
   AirplaneService:require('./airplane-service'),
   launchService:require('./launch-service'),
-  metroService:require('./metro-service')
+  metroService:require('./metro-service'),
+  QRservice:require('./qr-service')
 }
