@@ -22,7 +22,7 @@ router.use('/card',cardRoute);
 router.use('/users',userInfoRoute);
 router.use('/stations',stationRoute);
 router.use('/fare',fareRoute)
-router.use('/buses',busRoute)
+router.use('/services/buses',busRoute)
 router.use('/services/airplanes',airplaneRoute)
 router.use('/services/launches',launchRoute)
 router.use('/services/metros',metroRoute)
