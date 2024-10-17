@@ -11,7 +11,8 @@ async function loginUser(req,res){
     })
     const payload={
       username:user.username,
-      email:user.email
+      email:user.email,
+      role:user.role
     }
     const token=jwt.sign(payload,process.env.SECRETKEY);
     res.cookie('jwt',token,{secure: true,httpOnly:true,maxAge:100000000,sameSite:'None'})

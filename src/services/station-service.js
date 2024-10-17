@@ -21,7 +21,7 @@ async function addStation(data){
   }
 }
 
-async function getStations(data){
+async function getStationsByMedium(data){
   try {
     const response=await station.get(data);
     return response;
@@ -62,7 +62,7 @@ async function deleteStation(id){
 
 module.exports={
   addStation,
-  getStations,
+  getStationsByMedium,
   getAllStations,
   updateStation,
   deleteStation

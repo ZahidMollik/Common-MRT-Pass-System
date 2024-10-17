@@ -20,9 +20,9 @@ async function addStation(req,res){
   }
 }
 
-async function getStations(req,res){
+async function getStationsByMedium(req,res){
   try {
-    const stations=await stationService.getStations(req.params.medium)
+    const stations=await stationService.getStationsByMedium(req.params.medium)
     successResponse.data=stations;
     successResponse.message='Successfully complete';
     return res.status(StatusCodes.OK)
@@ -83,7 +83,7 @@ async function deleteStation(req,res){
 
 module.exports={
   addStation,
-  getStations,
+  getStationsByMedium,
   getAllStations,
   updateStation,
   deleteStation
